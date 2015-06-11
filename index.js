@@ -2,6 +2,12 @@ var babel = require("babel-core");
 
 module.exports = {
   process: function (src, filename) {
+    // Ignore CSS files and a preprocessed files we might be 
+    // adding to build.
+    if (filename.match(/(.*[.](?:css|scss|sass|less)$)/)) {
+      return;
+    }
+    
     // Allow the stage to be configured by an environment
     // variable, but use Babel's default stage (2) if
     // no environment variable is specified.
